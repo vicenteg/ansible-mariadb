@@ -1,0 +1,7 @@
+---
+# defaults file for mysql-server
+proxy_env: { }
+
+mariadb_version: 5.5.47
+mysql_root_user: root
+mysql_root_password: mapr
