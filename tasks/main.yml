@@ -5,7 +5,7 @@
   become_user: root
   yum: name={{item}} state=present
   when: ansible_distribution in ("CentOS", "RedHat", "Amazon")
-  environment: proxy_env
+  environment: '{{proxy_env}}'
   with_items:
     - mariadb-{{mariadb_version}}
     - mariadb-server-{{mariadb_version}}
@@ -21,6 +21,7 @@
   become_user: root
   command: rpm -U --nodeps http://yum.mariadb.org/{{mariadb_version}}/rhel7-amd64/rpms/MariaDB-{{mariadb_version}}-centos7-x86_64-compat.rpm
   when: mariadb_compat.rc == 1
+  environment: '{{proxy_env}}'
 
 - name: link libsasl2 per http://doc.mapr.com/display/components/Hue+Release+Notes#HueReleaseNotes-Hue3.9.0-1510ReleaseNotes
   become: true
