@@ -1,7 +1,6 @@
 ---
 # tasks file for mariadb
 - name: install MariaDB
-  become: true
   become: yes
   become_user: root
   yum: name={{item}} state=present
@@ -25,13 +24,11 @@
   environment: '{{proxy_env}}'
 
 - name: link libsasl2 per http://doc.mapr.com/display/components/Hue+Release+Notes#HueReleaseNotes-Hue3.9.0-1510ReleaseNotes
-  become: true
   become: yes
   become_user: root
   file: state=link src=/lib64/libsasl2.so.3.0.0 dest=/lib64/libsasl2.so.2 owner=root group=root mode=0644
 
 - name: ensure MariaDB starts on boot
-  become: true
   become: yes
   become_user: root
   service: name=mariadb enabled=yes state=started
